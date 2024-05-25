@@ -34,6 +34,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'logout' %}">Logout</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'publication' user.id %}">Create post</a>
+                    </li>
                 {% endif %}
                 <li class="nav-item">
                     <a class="nav-link" href="#">Not implemented</a>

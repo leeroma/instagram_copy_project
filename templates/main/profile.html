@@ -2,6 +2,7 @@
 {% load static %}
 {% block content %}
     <link rel="stylesheet" href="{% static 'main/style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 <header>
     <div class="container">
         <div class="profile">
@@ -37,15 +38,14 @@
             {% else %}
             {% for publication in publications %}
             <div class="gallery-item" tabindex="0">
-                <img src=""
-                     class="gallery-image" alt="">
+                <img src="{{ publication.image.url }}" class="gallery-image" alt="">
                 <div class="gallery-item-info">
                     <ul>
                         <li class="gallery-item-likes"><span class="visually-hidden">Likes:</span><i
-                                class="fas fa-heart" aria-hidden="true"></i> 56
+                                class="fas fa-heart" aria-hidden="true"></i> {{ publication.get_all_likes }}
                         </li>
                         <li class="gallery-item-comments"><span class="visually-hidden">Comments:</span><i
-                                class="fas fa-comment" aria-hidden="true"></i> 2
+                                class="fas fa-comment" aria-hidden="true"></i> 0
                         </li>
                     </ul>
                 </div>

@@ -26,6 +26,7 @@ class ProfileView(TemplateView):
         profile = Profile.objects.get(user_id=account.id)
         publication = Publication.objects.filter(profile_id=profile.id)
 
+        context['publications'] = publication
         context['posts'] = publication.count()
         context['followers'] = profile.follower.count()
         context['following'] = Profile.objects.filter(follower=account.id).count()
@@ -40,9 +41,9 @@ class PostPublicationView(CreateView):
 
     def post(self, request, *args, **kwargs):
         form = self.form_class(request.POST, request.FILES)
-        profile = Profile.objects.get(id=kwargs.get('id'))
+        profile = Profile.objects.get(user_id=kwargs.get('id'))
         if form.is_valid():
-            publication = form.save()
+            publication = form.save(commit=False)
             publication.profile = profile
             publication.save()
             return HttpResponseRedirect(reverse('profile', args=[publication.profile.id]))

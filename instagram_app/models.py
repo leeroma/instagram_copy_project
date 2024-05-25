@@ -11,7 +11,7 @@ class Profile(models.Model):
 
 
 class Publication(models.Model):
-    image = models.ImageField('Изображение', upload_to='publications/images', blank=False, null=False)
+    image = models.ImageField('Изображение', upload_to='post_images', blank=False, null=False)
     description = models.TextField('Описание', max_length=3000, blank=True, null=True)
     profile = models.ForeignKey(Profile, on_delete=models.PROTECT, related_name='publications', verbose_name='Профиль')
     likes = models.ManyToManyField(Account, related_name='likes', blank=True, verbose_name='Нравится')

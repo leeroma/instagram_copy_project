@@ -397,10 +397,18 @@
 },
 {
     "model": "sessions.session",
-    "pk": "owl9ytkl4npm1du65jfie3z8dwu9x98b",
+    "pk": "2rupctl84kr1drkgyvvyzim05f9htdah",
     "fields": {
-        "session_data": ".eJxVjDsOwjAUBO_iGlm24y8lPWewnv02JIASKU4qxN0hUgpod2b2JTJt65C3hiWPLM5Ci9PvVqg-MO2A7zTdZlnnaV3GIndFHrTJ68x4Xg7372CgNnzrwL7GYBzgeqfgnVYWviTjE7g3NVowBViOyZpgiiKKSSN2NaiOwOL9AeTIOBg:1sAtUC:suQiCAzV_hjM6zMa_u9jxA6bXcm84zctwfBeOI8xkAM",
-        "expire_date": "2024-06-08T15:39:08.711Z"
+        "session_data": ".eJxVjLsOAiEURP-F2hAXuDws7fcbCJcLsmogWXYr478ryRbaTDHnzLyYD_tW_N7T6hdiF2bY6bfDEB-pDkD3UG-Nx1a3dUE-FH7QzudG6Xk93L-DEnoZa1AmZYuCcvyGJLR2cgABSBFYQUT6jFEiBjPlGFUW4NBqStoKJ4G9PxYKONg:1sAuPO:8jtrsfQgSPkPmn5PMyG5l7Q3oicTlnMdf6UBn5KQoZE",
+        "expire_date": "2024-06-08T16:38:14.292Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "na22d37fglcqrvluu92i4kiw4l7g2aip",
+    "fields": {
+        "session_data": ".eJxVjLsOAiEURP-F2hAXuDws7fcbCJcLsmogWXYr478ryRbaTDHnzLyYD_tW_N7T6hdiF2bY6bfDEB-pDkD3UG-Nx1a3dUE-FH7QzudG6Xk93L-DEnoZa1AmZYuCcvyGJLR2cgABSBFYQUT6jFEiBjPlGFUW4NBqStoKJ4G9PxYKONg:1sAwPN:ncE7xSUzAZ_zppVhlGlvCcx-JOaVDmI2zRnD4_9ECjY",
+        "expire_date": "2024-06-08T18:46:21.266Z"
     }
 },
 {
@@ -408,7 +416,7 @@
     "pk": 1,
     "fields": {
         "password": "pbkdf2_sha256$720000$GMuAGqvLOxLhs3UIimcCWe$T7Z1tEhAKA1IbqYBnFgL5we5tWZld53WxM9m7QzDslo=",
-        "last_login": "2024-05-25T15:39:08.708Z",
+        "last_login": "2024-05-25T18:11:55.274Z",
         "is_superuser": true,
         "username": "root",
         "first_name": "super",
@@ -417,7 +425,7 @@
         "is_staff": true,
         "is_active": true,
         "date_joined": "2024-05-25T14:31:18.195Z",
-        "avatar": "/",
+        "avatar": "avatars/default_avatar.jpg",
         "bio": "bio biobiobiobiobiobio biobiobio biobio",
         "phone_number": null,
         "sex": null,
@@ -427,10 +435,10 @@
 },
 {
     "model": "accounts.account",
-    "pk": 2,
+    "pk": 7,
     "fields": {
-        "password": "pbkdf2_sha256$720000$UoQWMpQDcJ8nRwYboMfZ0N$7RTTpGDsYY9WjA48+byJ5vG5Oy/UjEyNoBjzGk7E7Dc=",
-        "last_login": "2024-05-25T15:37:06.184Z",
+        "password": "pbkdf2_sha256$720000$FbiSRvPSGaAOJyDTlRzkOt$lmL/SsyFuwegUikot7YyYGub91ZFZ0t3hYbEYVEApSs=",
+        "last_login": "2024-05-25T18:46:21.263Z",
         "is_superuser": false,
         "username": "test_user",
         "first_name": "test",
@@ -438,30 +446,8 @@
         "email": "test_user@test.com",
         "is_staff": false,
         "is_active": true,
-        "date_joined": "2024-05-25T15:00:53.596Z",
-        "avatar": "avatars/default_avatar_cD5iU0X.jpg",
-        "bio": null,
-        "phone_number": null,
-        "sex": null,
-        "groups": [],
-        "user_permissions": []
-    }
-},
-{
-    "model": "accounts.account",
-    "pk": 3,
-    "fields": {
-        "password": "pbkdf2_sha256$720000$VcpnoJKCN1Uag3JCEhIS3d$BuiQRCUcnyN/CUzCnDM8LxQVfWFCsffJ9KRxOG8sjh0=",
-        "last_login": "2024-05-25T15:14:17.647Z",
-        "is_superuser": false,
-        "username": "test_user2",
-        "first_name": "test2",
-        "last_name": "user",
-        "email": "test_user2@test.com",
-        "is_staff": false,
-        "is_active": true,
-        "date_joined": "2024-05-25T15:14:17.440Z",
-        "avatar": "avatars/angry.png",
+        "date_joined": "2024-05-25T16:38:14.078Z",
+        "avatar": "avatars/normal.png",
         "bio": null,
         "phone_number": null,
         "sex": null,
@@ -474,26 +460,51 @@
     "pk": 1,
     "fields": {
         "user": 1,
-        "follower": [
-            2,
-            3
-        ]
+        "follower": []
     }
 },
 {
     "model": "instagram_app.profile",
+    "pk": 7,
+    "fields": {
+        "user": 7,
+        "follower": []
+    }
+},
+{
+    "model": "instagram_app.publication",
     "pk": 2,
     "fields": {
-        "user": 2,
-        "follower": []
+        "image": "post_images/cortez-basic-sl-big-kids-shoes-KyTwmzZB.png",
+        "description": "Shooooooes",
+        "profile": 1,
+        "created_at": "2024-05-25T18:29:10.700Z",
+        "updated_at": "2024-05-25T18:29:10.700Z",
+        "likes": []
     }
 },
 {
-    "model": "instagram_app.profile",
+    "model": "instagram_app.publication",
     "pk": 3,
     "fields": {
-        "user": 3,
-        "follower": []
+        "image": "post_images/space.jpeg",
+        "description": "spes",
+        "profile": 1,
+        "created_at": "2024-05-25T18:44:27.173Z",
+        "updated_at": "2024-05-25T18:44:27.173Z",
+        "likes": []
+    }
+},
+{
+    "model": "instagram_app.publication",
+    "pk": 4,
+    "fields": {
+        "image": "post_images/man.jpeg",
+        "description": "man",
+        "profile": 1,
+        "created_at": "2024-05-25T18:44:40.286Z",
+        "updated_at": "2024-05-25T18:44:40.286Z",
+        "likes": []
     }
 }
 ]
