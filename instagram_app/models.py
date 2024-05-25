@@ -3,7 +3,7 @@ from accounts.models import Account
 
 
 class Profile(models.Model):
-    user = models.OneToOneField(Account, on_delete=models.CASCADE, verbose_name="Пользователь")
+    user = models.OneToOneField(Account, on_delete=models.CASCADE, verbose_name="Пользователь", related_name='profile')
     follower = models.ManyToManyField(Account, related_name='followers', blank=True, verbose_name='Подписчик')
 
     def __str__(self):
@@ -16,8 +16,15 @@ class Publication(models.Model):
     profile = models.ForeignKey(Profile, on_delete=models.PROTECT, related_name='publications', verbose_name='Профиль')
     likes = models.ManyToManyField(Account, related_name='likes', blank=True, verbose_name='Нравится')
 
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
     def __str__(self):
         return f'Publication {self.id}, by {self.profile.user.username}'
+
+    @property
+    def get_all_likes(self):
+        return self.likes.count()
 
 
 class Comment(models.Model):

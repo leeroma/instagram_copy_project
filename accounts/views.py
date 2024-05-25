@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from django.views.generic import TemplateView, CreateView
 
 from accounts.forms import AccountCreationForm
+from instagram_app.models import Profile
 
 
 class LoginView(TemplateView):
@@ -37,6 +38,7 @@ class RegisterView(CreateView):
         if form.is_valid():
             user = form.save()
             login(request, user)
+            Profile.objects.create(user=user)
             return redirect('index')
 
         context = {'form': form}
