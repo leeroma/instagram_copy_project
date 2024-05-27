@@ -1,0 +1,22 @@
+{% extends "partial/login_base.html" %}
+{% load static %}
+{% load bootstrap5 %}
+
+{% block head_content %}
+    <title>{{ user.username }}</title>
+{% endblock %}
+
+{% block container %}
+
+    <div class="container">
+        <form action="{% url 'user_change' user.pk %}" method="POST" enctype="multipart/form-data">
+            <div class="form">
+                {% csrf_token %}
+                {% bootstrap_form form %}
+                <button type="submit" class="btn btn-outline-info btn-block mt-5"><i class="lead">Редактировать</i>
+                </button>
+            </div>
+        </form>
+    </div>
+
+{% endblock %}

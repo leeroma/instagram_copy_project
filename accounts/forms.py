@@ -3,7 +3,7 @@ from django import forms
 from accounts.models import Account
 
 
-class AccountCreationForm(forms.ModelForm):
+class AccountForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput, label='Пароль', strip=False, required=True)
     password_confirm = forms.CharField(widget=forms.PasswordInput, label='Подтвердите пароль', strip=False,
                                        required=True)
@@ -26,3 +26,9 @@ class AccountCreationForm(forms.ModelForm):
     class Meta:
         model = Account
         fields = ('avatar', 'username', 'email', 'first_name', 'last_name', 'password', 'password_confirm', )
+
+
+class LoginForm(forms.ModelForm):
+    class Meta:
+        model = Account
+        fields = ('username', 'password', )

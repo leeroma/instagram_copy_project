@@ -1,13 +1,20 @@
-{% extends 'base.html' %}
+{% extends "partial/login_base.html" %}
+{% load static %}
 {% load bootstrap5 %}
-{% block title %}Sign Up Instagram{% endblock %}
 
-{% block content %}
-    <form action="{% url 'register' %}" method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {% bootstrap_form form %}
-        {% buttons %}
-            <button type="submit" class="btn btn-primary">Submit</button>
-        {% endbuttons %}
+{% block head_content %}
+    <title>{{ user.username }}</title>
+{% endblock %}
+
+{% block container %}
+    <form action="{% url 'register' %}" method="POST" enctype="multipart/form-data">
+        <div class="form">
+            {% csrf_token %}
+            {% bootstrap_form form %}
+            {% bootstrap_button button_type="submit" content='Зарегистрироваться' %}
+        </div>
     </form>
+
+
+
 {% endblock %}
