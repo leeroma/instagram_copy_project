@@ -20,7 +20,7 @@
                         <a href="{% url 'user_change' user.pk %}" class="ml-5 btn btn-outline-secondary">
                             Edit profile
                         </a>
-                    {% elif request.user not in user_obj.subscriptions.all %}
+                    {% elif request.user not in user.follower.all %}
                         <a href="" type="submit" class="ml-5 btn btn-outline-secondary">
                             Подписаться
                         </a>

@@ -1,4 +1,5 @@
 from django import forms
+from django.forms import TextInput
 
 from instagram_app.models import Publication
 
@@ -9,3 +10,7 @@ class PublicationForm(forms.ModelForm):
     class Meta:
         model = Publication
         exclude = ['created_at', 'updated_at', 'user', 'likes',]
+
+
+class SearchForm(forms.Form):
+    search = forms.CharField(widget=TextInput(attrs={'class': 'search-input'}), label='',)
