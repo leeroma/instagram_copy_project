@@ -55,7 +55,12 @@
                 </div>
                 <div class="row mt-4">
                     <div class="col-sm-12">
+                        <p><strong>{{ user.first_name }} {{ user.last_name }}</strong></p>
+                    </div>
+                    <div class="col-sm-12">
+                        {% if user.bio %}
                         <p>{{ user.bio }}</p>
+                        {% endif %}
                     </div>
                 </div>
             </div>
@@ -74,6 +79,10 @@
                         <img src="{{ publication.image.url }}" alt="{{ publication.description }}" height="272" width="272"
                              class="img-fluid"/>
                     </a>
+                </div>
+                {% empty %}
+                <div class="d-flex justify-content-center">
+                    <h3>Пока не публикаций</h3>
                 </div>
             {% endfor %}
         </div>

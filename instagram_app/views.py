@@ -4,7 +4,7 @@ from django.urls import reverse
 from django.views.generic import TemplateView, CreateView, ListView
 
 from instagram_app.forms import PublicationForm
-from instagram_app.models import Profile, Publication, Account
+from instagram_app.models import Publication, Account
 
 
 class IndexView(ListView):
@@ -17,7 +17,7 @@ class IndexView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         if self.request.user.is_authenticated:
-            followers = Profile.objects.filter(follower=self.request.user)
+            followers = Account.objects.filter(follower=self.request.user)
             publications = [Publication.objects.filter(profile=follower) for follower in followers]
             context["publications"] = publications
 
@@ -26,19 +26,18 @@ class IndexView(ListView):
 
 class ProfileView(TemplateView):
     template_name = 'accounts/user_detail.html'
-    model = Profile
+    model = Account
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
-        account = Account.objects.get(pk=self.kwargs['id'])
-        profile = Profile.objects.get(user_id=account.id)
+        profile = Account.objects.get(pk=self.kwargs['id'])
         publication = Publication.objects.filter(profile_id=profile.id)
 
         context['publications'] = publication
         context['posts'] = publication.count()
         context['followers'] = profile.follower.count()
-        context['following'] = Profile.objects.filter(follower=account.id).count()
+        context['following'] = Account.objects.filter(follower=self.kwargs['id']).count()
         context['profile'] = profile
         return context
 
@@ -50,7 +49,7 @@ class PostPublicationView(CreateView):
 
     def post(self, request, *args, **kwargs):
         form = self.form_class(request.POST, request.FILES)
-        profile = Profile.objects.get(user_id=kwargs.get('id'))
+        profile = Account.objects.get(pk=kwargs.get('id'))
         if form.is_valid():
             publication = form.save(commit=False)
             publication.profile = profile

@@ -15,6 +15,7 @@ class Account(AbstractUser):
     bio = models.TextField('Информация о пользователе', max_length=3000, blank=True, null=True)
     phone_number = models.IntegerField('Номер телефона', blank=True, null=True)
     sex = models.CharField('Пол', choices=SEX_CHOICES, max_length=6, blank=True, null=True)
+    follower = models.ManyToManyField(to='accounts.Account', related_name='followers', blank=True)
 
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = ['email', 'avatar', 'password']

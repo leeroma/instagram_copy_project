@@ -5,7 +5,7 @@ from django.urls import reverse
 from django.views.generic import TemplateView, CreateView, UpdateView
 
 from accounts.forms import AccountForm
-from instagram_app.models import Profile, Account
+from instagram_app.models import Account
 
 
 class LoginView(TemplateView):
@@ -40,7 +40,6 @@ class RegisterView(CreateView):
         if form.is_valid():
             user = form.save()
             login(request, user)
-            Profile.objects.create(user=user)
             return redirect('index')
 
         context = {'form': form}
