@@ -25,10 +25,10 @@ class AccountForm(forms.ModelForm):
 
     class Meta:
         model = Account
-        fields = ('avatar', 'username', 'email', 'first_name', 'last_name', 'password', 'password_confirm', )
+        fields = ('avatar', 'username', 'email', 'first_name', 'last_name', 'bio', 'password', 'password_confirm',)
 
 
 class LoginForm(forms.ModelForm):
     class Meta:
         model = Account
-        fields = ('username', 'password', )
+        fields = ('username', 'password',)

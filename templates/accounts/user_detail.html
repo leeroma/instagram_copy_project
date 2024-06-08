@@ -10,8 +10,8 @@
     <div class="container mb-5" style="margin-top: 8em;">
         <div class="row">
             <div class="col-sm-4 d-flex justify-content-center">
-                    <img src="{{ user.avatar.url }}" alt="@{{ user.username }}" class="rounded-circle" width="160px"
-                         height="160px"/>
+                <img src="{{ user.avatar.url }}" alt="@{{ user.username }}" class="rounded-circle" width="160px"
+                     height="160px"/>
             </div>
             <div class="col-sm-8">
                 <h2 style="font-weight: 100;">
@@ -21,36 +21,30 @@
                             Edit profile
                         </a>
                     {% elif request.user not in user_obj.subscriptions.all %}
-
-
-{#                        <a href="{% url 'subscribe' user_obj.pk %}"#}
-{#                           type="submit"#}
-{#                           class="ml-5 btn btn-outline-secondary"#}
-{#                        >#}
-{#                            Подписаться#}
-{#                        </a>#}
-{#                    {% else %}#}
-{#                            <a href="{% url 'subscribe' user_obj.pk %}"#}
-{#                                    type="submit"#}
-{#                                    class="ml-5 btn btn-outline-secondary"#}
-{#                            >#}
-{#                                Отменить подписку#}
-{#                            </a>#}
+                        <a href="" type="submit" class="ml-5 btn btn-outline-secondary">
+                            Подписаться
+                        </a>
+                    {% else %}
+                        <a href="" type="submit" class="ml-5 btn btn-outline-secondary">
+                            Отменить подписку
+                        </a>
                     {% endif %}
                 </h2>
                 <div class="row mt-2" style="font-size: 1.2em">
                     <div class="col-sm-4">
-                        <b>{{ posts }}</b> Публикации
+                        <b>{{ user.get_all_publications }}</b> Публикации
                     </div>
 
                     <div class="col-sm-4">
-{#                        <a href="{% url 'subscribers' user_obj.pk %}" class="text-decoration-none" style="color: black"><b>{{ followers }}</b> Подписчики</a>#}
-                        <a href="" class="text-decoration-none" style="color: black"><b>{{ followers }}</b> Подписчики</a>
+                        {#                        <a href="{% url 'subscribers' user_obj.pk %}" class="text-decoration-none" style="color: black"><b>{{ followers }}</b> Подписчики</a>#}
+                        <a href="" class="text-decoration-none" style="color: black"><b>{{ user.get_all_followers }}</b>
+                            Подписчики</a>
                     </div>
 
                     <div class="col-sm-4">
-{#                        <a href="{% url 'follows' user_obj.pk %}" class="text-decoration-none" style="color: black"><b>{{ following }}</b> Подписки</a>#}
-                        <a href="" class="text-decoration-none" style="color: black"><b>{{ following }}</b> Подписки</a>
+                        {#                        <a href="{% url 'follows' user_obj.pk %}" class="text-decoration-none" style="color: black"><b>{{ following }}</b> Подписки</a>#}
+                        <a href="" class="text-decoration-none"
+                           style="color: black"><b>{{ user.get_all_followings }}</b> Подписки</a>
                     </div>
                 </div>
                 <div class="row mt-4">
@@ -59,7 +53,7 @@
                     </div>
                     <div class="col-sm-12">
                         {% if user.bio %}
-                        <p>{{ user.bio }}</p>
+                            <p>{{ user.bio }}</p>
                         {% endif %}
                     </div>
                 </div>
@@ -73,14 +67,13 @@
         <div class="row mt-3">
             {% for publication in publications %}
                 <div class="col-sm-4 pt-5 pb-5 pr-5 pl-5 d-flex justify-content-center align-items-center">
-                    <a 
-{#                            href="{% url 'post' publication.id %}" #}
-                            class="border">
-                        <img src="{{ publication.image.url }}" alt="{{ publication.description }}" height="272" width="272"
+                    <a href="{% url 'publication' publication.id %}" class="border">
+                        <img src="{{ publication.image.url }}" alt="{{ publication.description }}" height="272"
+                             width="272"
                              class="img-fluid"/>
                     </a>
                 </div>
-                {% empty %}
+            {% empty %}
                 <div class="d-flex justify-content-center">
                     <h3>Пока не публикаций</h3>
                 </div>

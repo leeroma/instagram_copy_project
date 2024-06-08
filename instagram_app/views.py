@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.urls import reverse
-from django.views.generic import TemplateView, CreateView, ListView
+from django.views.generic import TemplateView, CreateView, ListView, DetailView
 
 from instagram_app.forms import PublicationForm
 from instagram_app.models import Publication, Account
@@ -30,15 +30,9 @@ class ProfileView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        user = Account.objects.get(pk=kwargs['pk'])
 
-        profile = Account.objects.get(pk=self.kwargs['id'])
-        publication = Publication.objects.filter(profile_id=profile.id)
-
-        context['publications'] = publication
-        context['posts'] = publication.count()
-        context['followers'] = profile.follower.count()
-        context['following'] = Account.objects.filter(follower=self.kwargs['id']).count()
-        context['profile'] = profile
+        context['publications'] = user.publications.all()
         return context
 
 
@@ -49,11 +43,20 @@ class PostPublicationView(CreateView):
 
     def post(self, request, *args, **kwargs):
         form = self.form_class(request.POST, request.FILES)
-        profile = Account.objects.get(pk=kwargs.get('id'))
         if form.is_valid():
             publication = form.save(commit=False)
-            publication.profile = profile
+            publication.user = request.user
             publication.save()
-            return HttpResponseRedirect(reverse('profile', args=[publication.profile.id]))
+            return HttpResponseRedirect(reverse('profile', args=[publication.user.pk]))
 
         return render(request, self.template_name, context={'form': form})
+
+
+class PublicationDetailView(DetailView):
+    model = Publication
+    template_name = 'publication_detail.html'
+    context_object_name = 'publication'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context

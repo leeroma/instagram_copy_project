@@ -26,5 +26,17 @@ class Account(AbstractUser):
         verbose_name = 'Account'
         verbose_name_plural = 'Accounts'
 
+    @property
+    def get_all_publications(self):
+        return self.publications.count()
+
+    @property
+    def get_all_followers(self):
+        return self.followers.count()
+
+    @property
+    def get_all_followings(self):
+        return Account.objects.filter(follower__id=self.id).count()
+
     def __str__(self):
         return self.username
