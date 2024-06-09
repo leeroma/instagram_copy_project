@@ -13,22 +13,22 @@
     <a href="{% url 'publication' publication.pk %}">
         <img style="width: 100%;" src="{{ publication.image.url }}" alt="{{ publication.image }}">
     </a>
-    {% if request.user not in post.user_likes.all %}
+    {% if request.user not in publication.get_all_likes %}
         <p class="mt-1 ml-2">
-            <a href="" class="text-decoration-none" style="color: #000; font-size: 20px;">
+            <a href="{% url 'like' publication.pk %}" class="text-decoration-none" style="color: #000; font-size: 20px;">
                 <i class="far fa-heart"></i>
-            </a><b>{{ publication.get_all_likes }} Отметок "Нравится"</b>
+            </a><b>{{ publication.get_all_likes.count }} Отметок "Нравится"</b>
         </p>
     {% else %}
         <p class="mt-1 ml-2">
-            <a href="" class="text-decoration-none" style="color: #000; font-size: 20px;">
+            <a href="{% url 'remove_like' publication.pk %}" class="text-decoration-none" style="color: #000; font-size: 20px;">
                 <i class="bi bi-heart-fill"></i>
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" fill="currentColor"
                      class="bi bi-heart-fill" viewBox="0 0 16 16">
                     <path fill-rule="evenodd" 
                           d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
                 </svg>
-            </a><b>{{ publication.get_all_likes }} Отметок "Нравится"</b>
+            </a><b>{{ publication.get_all_likes.count }} Отметок "Нравится"</b>
         </p>
     {% endif %}
     <p class=" ml-1 mr-1 mb-2">

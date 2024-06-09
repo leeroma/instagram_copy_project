@@ -17,7 +17,7 @@ class Publication(models.Model):
 
     @property
     def get_all_likes(self):
-        return self.likes.count()
+        return self.likes.all()
 
     @property
     def get_author(self):

@@ -100,3 +100,16 @@ class FollowsView(TemplateView):
         user = self.model.objects.get(pk=kwargs['pk'])
         context['follows'] = user.get_all_follows
         return context
+
+
+def like_view(request, **kwargs):
+    publication = Publication.objects.get(pk=kwargs['pk'])
+    publication.likes.add(request.user)
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+
+def remove_like_view(request, **kwargs):
+    publication = Publication.objects.get(pk=kwargs['pk'])
+    publication.likes.remove(request.user)
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+

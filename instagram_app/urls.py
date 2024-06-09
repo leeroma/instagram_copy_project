@@ -10,4 +10,6 @@ urlpatterns = [
     path('search', views.SearchView.as_view(), name='search'),
     path('profile/followers/<int:pk>', views.FollowersView.as_view(), name='followers'),
     path('profile/follows/<int:pk>', views.FollowsView.as_view(), name='follows'),
+    path('publication/like/<int:pk>', views.like_view, name='like'),
+    path('publication/remove_like/<int:pk>', views.remove_like_view, name='remove_like'),
 ]
