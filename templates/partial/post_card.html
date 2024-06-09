@@ -3,10 +3,10 @@
     <a href="{% with user=publication.get_author %}{% url 'profile' user.pk %}{% endwith %}"
        style='color: inherit;text-decoration: inherit;'>
         <div class="media pt-3 pl-3 pb-1">
-            <img class="mr-3 rounded-circle" height="35" width="38" src="{{ user.avatar.url }}"
-                 alt="{{ user.username }}">
+            <img class="mr-3 rounded-circle" height="35" width="38" src="{{ publication.get_author.avatar.url }}"
+                 alt="{{ publication.get_author.username }}">
             <div class="media-body">
-                <p style="margin-top: 5px;">{{ user.username }}</p>
+                <p style="margin-top: 5px;">{{ publication.get_author.username }}</p>
             </div>
         </div>
     </a>
@@ -34,13 +34,13 @@
     <p class=" ml-1 mr-1 mb-2">
         <b> {{ publication.get_author }}</b> <small class="text-break">{{ publication.description }} </small>
     </p>
-    {% for comment in publication.comments.all %}
+{#    {% for comment in publication.comments.all %}#}
         <p class=" ml-1 mr-1 mb-2">
-            <a href="{% url 'profile' comment.author.id %}" class="text-decoration-none"
+            <a href="" class="text-decoration-none"
                style="color: black"><b> {{ comment.author.username }}</b></a> <small
                 class="text-break">{{ comment.text }} </small>
         </p>
-    {% endfor %}
+{#    {% endfor %}#}
     <p class=" ml-1 mr-1 mb-2">
     <form action="" method="post">
         {% csrf_token %}

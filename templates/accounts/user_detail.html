@@ -21,7 +21,7 @@
                             Edit profile
                         </a>
                     {% elif request.user not in user.follower.all %}
-                        <a href="" type="submit" class="ml-5 btn btn-outline-secondary">
+                        <a href="{% url 'follow' user.pk %}" type="submit" class="ml-5 btn btn-outline-secondary">
                             Подписаться
                         </a>
                     {% else %}
