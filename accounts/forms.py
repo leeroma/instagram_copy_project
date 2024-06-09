@@ -1,4 +1,5 @@
 from django import forms
+from django.forms import TextInput
 
 from accounts.models import Account
 
@@ -7,6 +8,10 @@ class AccountForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput, label='Пароль', strip=False, required=True)
     password_confirm = forms.CharField(widget=forms.PasswordInput, label='Подтвердите пароль', strip=False,
                                        required=True)
+    username = forms.CharField(max_length=300, label='Имя пользователя')
+    email = forms.CharField(max_length=500, label='Адрес электронной почты', widget=TextInput(attrs={'type': 'email'}))
+    first_name = forms.CharField(label='Имя', required=False)
+    last_name = forms.CharField(label='Фамилия', required=False)
 
     def clean(self):
         cleaned_data = super().clean()
@@ -28,7 +33,12 @@ class AccountForm(forms.ModelForm):
         fields = ('avatar', 'username', 'email', 'first_name', 'last_name', 'bio', 'password', 'password_confirm',)
 
 
-class LoginForm(forms.ModelForm):
+class AccountEditForm(forms.ModelForm):
+    username = forms.CharField(max_length=300, label='Имя пользователя')
+    email = forms.CharField(max_length=500, label='Адрес электронной почты', widget=TextInput(attrs={'type': 'email'}))
+    first_name = forms.CharField(label='Имя')
+    last_name = forms.CharField(label='Фамилия')
+
     class Meta:
         model = Account
-        fields = ('username', 'password',)
+        fields = ('avatar', 'username', 'email', 'first_name', 'last_name', 'bio',)

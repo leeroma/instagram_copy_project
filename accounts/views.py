@@ -4,7 +4,7 @@ from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.views.generic import TemplateView, CreateView, UpdateView
 
-from accounts.forms import AccountForm
+from accounts.forms import AccountForm, AccountEditForm
 from instagram_app.models import Account
 
 
@@ -49,7 +49,7 @@ class RegisterView(CreateView):
 class EditProfileView(UpdateView):
     model = Account
     template_name = 'accounts/user_change.html'
-    form_class = AccountForm
+    form_class = AccountEditForm
     success_url = 'index'
 
     def post(self, request, *args, **kwargs):
