@@ -12,4 +12,5 @@ urlpatterns = [
     path('profile/follows/<int:pk>', views.FollowsView.as_view(), name='follows'),
     path('publication/like/<int:pk>', views.like_view, name='like'),
     path('publication/remove_like/<int:pk>', views.remove_like_view, name='remove_like'),
+    path('publication/comment/<int:pk>', views.CommentCreateView.as_view(), name='comment'),
 ]

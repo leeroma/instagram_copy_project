@@ -29,6 +29,7 @@ class Comment(models.Model):
                                     verbose_name='Публикация')
     user = models.ForeignKey(Account, on_delete=models.PROTECT, related_name='comments', verbose_name='Пользователь')
     text = models.TextField('Комментарий', blank=False, null=False)
+    created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.text

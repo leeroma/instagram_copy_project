@@ -47,3 +47,21 @@ html, body {
 .login-input {
     max-width: 400px;
 }
+
+.comment-input {
+    border: 0 solid;
+    outline: 0;
+}
+
+.publish-submit {
+    color: DeepSkyBlue;
+    border: 0 solid;
+    background-color: transparent;
+}
+
+.search-input {
+    border-radius: 5px;
+    padding: 3px 8px 3px 8px;
+    background-color: #efefef;
+
+}

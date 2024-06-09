@@ -15,17 +15,19 @@
     </a>
     {% if request.user not in publication.get_all_likes %}
         <p class="mt-1 ml-2">
-            <a href="{% url 'like' publication.pk %}" class="text-decoration-none" style="color: #000; font-size: 20px;">
+            <a href="{% url 'like' publication.pk %}" class="text-decoration-none"
+               style="color: #000; font-size: 20px;">
                 <i class="far fa-heart"></i>
             </a><b>{{ publication.get_all_likes.count }} Отметок "Нравится"</b>
         </p>
     {% else %}
         <p class="mt-1 ml-2">
-            <a href="{% url 'remove_like' publication.pk %}" class="text-decoration-none" style="color: #000; font-size: 20px;">
+            <a href="{% url 'remove_like' publication.pk %}" class="text-decoration-none"
+               style="color: #000; font-size: 20px;">
                 <i class="bi bi-heart-fill"></i>
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" fill="currentColor"
                      class="bi bi-heart-fill" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd" 
+                    <path fill-rule="evenodd"
                           d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
                 </svg>
             </a><b>{{ publication.get_all_likes.count }} Отметок "Нравится"</b>
@@ -34,23 +36,19 @@
     <p class=" ml-1 mr-1 mb-2">
         <b> {{ publication.get_author }}</b> <small class="text-break">{{ publication.description }} </small>
     </p>
-{#    {% for comment in publication.comments.all %}#}
-        <p class=" ml-1 mr-1 mb-2">
-            <a href="" class="text-decoration-none"
-               style="color: black"><b> {{ comment.author.username }}</b></a> <small
-                class="text-break">{{ comment.text }} </small>
-        </p>
-{#    {% endfor %}#}
+        {% for comment in publication.comments.all %}
     <p class=" ml-1 mr-1 mb-2">
-    <form action="" method="post">
+        <a href="{% url 'profile' comment.user.pk %}" class="text-decoration-none"
+           style="color: black"><b> {{ comment.user.username }}</b></a> <small
+            class="text-break">{{ comment.text }} </small>
+    </p>
+        {% endfor %}
+    <p class=" ml-1 mr-1 mb-2">
+    <form action="{% url 'comment' publication.pk %}" method="post">
         {% csrf_token %}
-        <div class="input-group border-0 shadow-none ml-2 mr-2" style="width: auto">
-            <div class="form-control" style="background-color: white; height: 50px">
-                ...
-            </div>
-            <div class="border-0 shadow-none input-group-append" style="background-color: white; height: 50px">
-                ...
-            </div>
+        <div class="form-control d-flex justify-content-between" style="background-color: white; height: 50px">
+            <input name="text" placeholder="Добавьте комментарий..." class="input-group border-0 shadow-none ml-2 mr-2 comment-input">
+            <button type="submit" class="publish-submit">Опубликовать</button>
         </div>
     </form>
     </p>

@@ -5,7 +5,7 @@ from django.urls import reverse
 from django.views.generic import TemplateView, CreateView, ListView, DetailView
 
 from instagram_app.forms import PublicationForm, SearchForm
-from instagram_app.models import Publication, Account
+from instagram_app.models import Publication, Account, Comment
 
 
 class IndexView(ListView):
@@ -113,3 +113,17 @@ def remove_like_view(request, **kwargs):
     publication.likes.remove(request.user)
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
+
+class CommentCreateView(CreateView):
+    model = Comment
+
+    def post(self, request, *args, **kwargs):
+        publication = Publication.objects.get(pk=kwargs['pk'])
+        if request.POST['text']:
+            comment = self.model.objects.create(
+                publication=publication,
+                user=request.user,
+                text=request.POST['text']
+            )
+            comment.save()
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER'))

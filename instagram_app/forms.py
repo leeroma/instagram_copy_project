@@ -13,5 +13,5 @@ class PublicationForm(forms.ModelForm):
 
 
 class SearchForm(forms.Form):
-    search = forms.CharField(widget=TextInput(attrs={'class': 'search-input', 'placeholder': 'Search...', }),
+    search = forms.CharField(widget=TextInput(attrs={'class': 'search-input', 'placeholder': 'Поиск', }),
                              label='', )
