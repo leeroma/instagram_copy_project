@@ -52,12 +52,8 @@ class EditProfileView(UpdateView):
     form_class = AccountEditForm
     success_url = 'index'
 
-    def post(self, request, *args, **kwargs):
-        form = self.form_class(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()
-
-        return HttpResponseRedirect(reverse('profile', args=[request.user.pk]))
+    def get_success_url(self):
+        return reverse('profile', args=[self.get_object().pk])
 
 
 def follow(request, **kwargs):

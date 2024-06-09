@@ -36,8 +36,8 @@ class AccountForm(forms.ModelForm):
 class AccountEditForm(forms.ModelForm):
     username = forms.CharField(max_length=300, label='Имя пользователя')
     email = forms.CharField(max_length=500, label='Адрес электронной почты', widget=TextInput(attrs={'type': 'email'}))
-    first_name = forms.CharField(label='Имя')
-    last_name = forms.CharField(label='Фамилия')
+    first_name = forms.CharField(label='Имя', required=False)
+    last_name = forms.CharField(label='Фамилия', required=False)
 
     class Meta:
         model = Account
