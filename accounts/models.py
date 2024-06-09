@@ -32,7 +32,7 @@ class Account(AbstractUser):
 
     @property
     def get_all_followers(self):
-        return self.followers.count()
+        return self.follower.all().count()
 
     @property
     def get_all_followings(self):
