@@ -9,8 +9,9 @@ class PublicationForm(forms.ModelForm):
 
     class Meta:
         model = Publication
-        exclude = ['created_at', 'updated_at', 'user', 'likes',]
+        exclude = ['created_at', 'updated_at', 'user', 'likes', ]
 
 
 class SearchForm(forms.Form):
-    search = forms.CharField(widget=TextInput(attrs={'class': 'search-input'}), label='',)
+    search = forms.CharField(widget=TextInput(attrs={'class': 'search-input', 'placeholder': 'Search...', }),
+                             label='', )
