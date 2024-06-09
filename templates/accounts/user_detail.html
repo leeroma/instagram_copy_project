@@ -36,15 +36,11 @@
                     </div>
 
                     <div class="col-sm-4">
-                        {#                        <a href="{% url 'subscribers' user_obj.pk %}" class="text-decoration-none" style="color: black"><b>{{ followers }}</b> Подписчики</a>#}
-                        <a href="" class="text-decoration-none" style="color: black"><b>{{ user.get_all_followers }}</b>
-                            Подписчики</a>
+                        <a href="{% url 'followers' user.pk %}" class="text-decoration-none" style="color: black"><b>{{ user.get_all_followers.count }}</b> Подписчики</a>
                     </div>
-
                     <div class="col-sm-4">
-                        {#                        <a href="{% url 'follows' user_obj.pk %}" class="text-decoration-none" style="color: black"><b>{{ following }}</b> Подписки</a>#}
-                        <a href="" class="text-decoration-none"
-                           style="color: black"><b>{{ user.get_all_followings }}</b> Подписки</a>
+                        <a href="{% url 'follows' user.pk %}" class="text-decoration-none"
+                           style="color: black"><b>{{ user.get_all_follows.count }}</b> Подписки</a>
                     </div>
                 </div>
                 <div class="row mt-4">

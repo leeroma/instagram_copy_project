@@ -8,4 +8,6 @@ urlpatterns = [
     path('profile/publication/<int:pk>', views.PostPublicationView.as_view(), name='post_publication'),
     path('publication/<int:pk>', views.PublicationDetailView.as_view(), name='publication'),
     path('search', views.SearchView.as_view(), name='search'),
+    path('profile/followers/<int:pk>', views.FollowersView.as_view(), name='followers'),
+    path('profile/follows/<int:pk>', views.FollowsView.as_view(), name='follows'),
 ]

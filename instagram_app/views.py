@@ -78,3 +78,25 @@ class SearchView(TemplateView):
             return render(request, self.template_name, context={'accounts': accounts})
 
         return render(request, self.template_name)
+
+
+class FollowersView(TemplateView):
+    template_name = 'accounts/followers.html'
+    model = Account
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        user = self.model.objects.get(pk=kwargs['pk'])
+        context['followers'] = user.get_all_followers
+        return context
+
+
+class FollowsView(TemplateView):
+    template_name = 'accounts/follows.html'
+    model = Account
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        user = self.model.objects.get(pk=kwargs['pk'])
+        context['follows'] = user.get_all_follows
+        return context

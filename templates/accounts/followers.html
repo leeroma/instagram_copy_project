@@ -1,19 +1,19 @@
 {% extends 'base.html' %}
 {% block title %}
-    <title>Follows</title>
+    <title>Followers</title>
 {% endblock %}
 
 
 {% block container %}
     <div class="row justify-content-md-center">
         <div class="col-6 pt-3 pb-3" id="profile-box">
-            Подписан на:
+            Подписчики:
             <ul class="list-group list-group-flush">
-                {% for user in follows %}
-                    <a href="{% url 'profile' user.pk %}" class="text-secondary">
+                {% for follower in followers %}
+                    <a href="{% url 'profile' follower.pk %}" class="text-secondary">
                         <li class="list-group-item"><img class="mr-3 rounded-circle" height="35" width="38"
-                                                         src="{{ user.avatar.url }}"
-                                                         alt="{{ user.username }}">{{ user.username }}</li>
+                                                         src="{{ follower.avatar.url }}"
+                                                         alt="{{ follower.username }}">{{ follower.username }}</li>
                     </a>
                 {% empty %}
                     <li class="list-group-item">Пользователи не найдены</li>

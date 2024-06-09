@@ -32,11 +32,11 @@ class Account(AbstractUser):
 
     @property
     def get_all_followers(self):
-        return self.follower.all().count()
+        return self.follower.all()
 
     @property
-    def get_all_followings(self):
-        return Account.objects.filter(follower__id=self.id).count()
+    def get_all_follows(self):
+        return Account.objects.filter(follower__id=self.id)
 
     def __str__(self):
         return self.username
