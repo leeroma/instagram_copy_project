@@ -78,10 +78,3 @@ class SearchView(TemplateView):
             return render(request, self.template_name, context={'accounts': accounts})
 
         return render(request, self.template_name)
-
-
-def follow(request, **kwargs):
-    user = Account.objects.get(pk=kwargs['pk'])
-    user.follower.add(request.user)
-
-    return HttpResponseRedirect(reverse('profile', args=[user.pk]))

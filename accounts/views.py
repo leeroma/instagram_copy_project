@@ -58,3 +58,17 @@ class EditProfileView(UpdateView):
             form.save()
 
         return HttpResponseRedirect(reverse('profile', args=[request.user.pk]))
+
+
+def follow(request, **kwargs):
+    user = Account.objects.get(pk=kwargs['pk'])
+    user.follower.add(request.user)
+
+    return HttpResponseRedirect(reverse('profile', args=[user.pk]))
+
+
+def unfollow(request, **kwargs):
+    user = Account.objects.get(pk=kwargs['pk'])
+    user.follower.remove(request.user)
+
+    return HttpResponseRedirect(reverse('profile', args=[user.pk]))
