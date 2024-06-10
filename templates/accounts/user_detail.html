@@ -16,18 +16,20 @@
             <div class="col-sm-8">
                 <h2 style="font-weight: 100;">
                     {{ user.username }}
-                    {% if user == request.user %}
-                        <a href="{% url 'user_change' user.pk %}" class="ml-5 btn btn-outline-secondary">
-                            Edit profile
-                        </a>
-                    {% elif request.user not in user.follower.all %}
-                        <a href="{% url 'follow' user.pk %}" type="submit" class="ml-5 btn btn-outline-secondary">
-                            Подписаться
-                        </a>
-                    {% else %}
-                        <a href="{% url 'unfollow' user.pk %}" type="submit" class="ml-5 btn btn-outline-secondary">
-                            Отменить подписку
-                        </a>
+                    {% if request.user.is_authenticated %}
+                        {% if user == request.user %}
+                            <a href="{% url 'user_change' user.pk %}" class="ml-5 btn btn-outline-secondary">
+                                Edit profile
+                            </a>
+                        {% elif request.user not in user.follower.all %}
+                            <a href="{% url 'follow' user.pk %}" type="submit" class="ml-5 btn btn-outline-secondary">
+                                Подписаться
+                            </a>
+                        {% else %}
+                            <a href="{% url 'unfollow' user.pk %}" type="submit" class="ml-5 btn btn-outline-secondary">
+                                Отменить подписку
+                            </a>
+                        {% endif %}
                     {% endif %}
                 </h2>
                 <div class="row mt-2" style="font-size: 1.2em">
@@ -36,7 +38,8 @@
                     </div>
 
                     <div class="col-sm-4">
-                        <a href="{% url 'followers' user.pk %}" class="text-decoration-none" style="color: black"><b>{{ user.get_all_followers.count }}</b> Подписчики</a>
+                        <a href="{% url 'followers' user.pk %}" class="text-decoration-none"
+                           style="color: black"><b>{{ user.get_all_followers.count }}</b> Подписчики</a>
                     </div>
                     <div class="col-sm-4">
                         <a href="{% url 'follows' user.pk %}" class="text-decoration-none"
